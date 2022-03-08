@@ -1,36 +1,49 @@
 <?php
-    
-    require_once('./vendor/autoload.php');
+    function pretty_print_r($var): void {
+        echo '<pre>' . print_r($var, true) . '</pre>';
+    };
+
+    require_once('../Td-cinema/config/config.php');
+    require_once('../Td-cinema/vendor/autoload.php');
+
     use GuzzleHttp\Client;
+
     function get_client() {
-        
-
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
-        return $response;
-    }
-
-    function make_request() {
         $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://httpbin.org',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
+            'verify' => false,
+            'stream' => false,
         ]);
         return $client;
+    }
+
+    function make_request(Client $client,  string $url){
+        $res = $client->get($url);
+        return json_decode($res->getBody()->getContents());
     }
 
     function get_films() {
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://httpbin.org',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
-        return $client;
+        $client = get_client();
+        return make_request($client, request_start_url.'/movie/popular?'.key_API);
     }
 
 
-    var_dump(get_client());
-    var_dump(make_request());
+
+    
+    // print_r(push_all_films_in_array(get_films()->results));
+
+
+
+
+
+
+
+    function get_film_by_id(int $id) {
+        $client = get_client();
+        return make_request($client, request_start_url."/movie/$id?".key_API);
+    }
+
+    // pretty_print_r(get_film_by_id(476669));
+    // pretty_print_r(get_film_by_id(476669)->title);
+    // pretty_print_r(get_film_by_id(476669)->poster_path);
 ?>
+  
