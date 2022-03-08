@@ -30,7 +30,7 @@ require_once('../Td-cinema/functions.php')
     <section class="cards">
         <?php 
             foreach (get_films()->results as $key => $value) {
-                echo "<div class=\"card\">
+                echo "<a href=\"http://td-cinema.test?film=$value->id\"><div class=\"card\">
                         <div class=\"image\">
                             <img src=\"https://image.tmdb.org/t/p/original$value->poster_path\" class=\"poster\">
                         </div>
@@ -39,7 +39,7 @@ require_once('../Td-cinema/functions.php')
                             <p class=\"runtime\"></p>
                         </div>
                         
-                    </div>";
+                    </div></a>";
             }
         
         ?>
