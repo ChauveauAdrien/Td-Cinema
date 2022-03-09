@@ -1,7 +1,7 @@
 /* font */
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 *, ::after, ::before {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@
 body {
     background-color: rgb(37, 37, 37);
     color: white;
-    font-family: 'Montserrat';
+    font-family: 'Cabin';
 }
 
 .header-wrapper {
@@ -88,10 +88,6 @@ h1 {
 .poster {
     width: 100%;
     height: auto;
-	
-
-    
-	
 }
 
 .image:hover  {
@@ -138,10 +134,14 @@ h1 {
 .info-film {
     position: relative;
     width: 100%;
-    height: 100px;
-    top: -68px;
+    height: 120px;
+    top: 5px;
     background: rgba(0, 0, 0, 0.7);
     padding: 10px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    transition: top 0.2s ease-in-out;
+
 }
 
 .title {
@@ -149,8 +149,77 @@ h1 {
     font-weight: 600;
 }
 
+.date-sortie{
+    margin: 31px 15px 0px 0px;
+    font-size: 18px;
+    align-self: flex-end;
+}
 
 .card:hover .info-film {
-    top: -100px;
+    top: -68px;
     transition: top 0.2s ease-in-out;
+}
+
+/* details */
+
+.details-body {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.greyscale {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pagination {
+    margin-left: 500px;
+}
+
+.content {
+    margin: 0px 50px 50px 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 150px;
+}
+
+.details-title {
+    font-size: 70px;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.pills {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.pill {
+    padding: 2px 20px;
+    border: 1px solid white;
+    border-radius: 50px;
+    margin: 0px 5px;
+}
+
+.right {
+    width: 50%;
+}
+
+.right h1 {
+    font-size: 40px;
+    margin-bottom: 50px;
 }

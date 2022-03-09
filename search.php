@@ -3,6 +3,12 @@ require_once('../Td-cinema/functions.php');
 $page = get_page();
 $subpage = $page-1;
 $addpage = $page+1;
+
+if (is_search_exist()) {
+    $search_movies = search_movies($_POST['search']);
+}else {
+    header('Location : http://td-cinema.test/');
+}
 ?>
 
 
@@ -19,10 +25,10 @@ $addpage = $page+1;
     <?php
         require_once('../Td-cinema/inc/header.php')
     ?>
-    <h1>Les plus populaires</h1>
+    <h1>Vous avez recherché : <?= $_POST['search'] ?></h1>
     <section class="cards">
         <?php 
-            foreach (get_films()->results as $key => $value) {
+            foreach ($search_movies ->results as $key => $value) {
                 echo "<a href=\"http://td-cinema.test/details.php?film=$value->id\"><div class=\"card\">
                         <div class=\"image\">
                             <img src=\"https://image.tmdb.org/t/p/original$value->poster_path\" class=\"poster\">
